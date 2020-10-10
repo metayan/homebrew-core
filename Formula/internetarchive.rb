@@ -19,7 +19,7 @@ class Internetarchive < Formula
     sha256 "2f697bae3aaa4e8225762e1d4f94a15ebef8b6a4909e0336d76013e509ff6ac8" => :high_sierra
   end
 
-  depends_on "python@3.9"
+  depends_on "python@3.8"
 
   resource "certifi" do
     url "https://files.pythonhosted.org/packages/40/a7/ded59fa294b85ca206082306bba75469a38ea1c7d44ea7e1d64f5443d67a/certifi-2020.6.20.tar.gz"
@@ -82,7 +82,7 @@ class Internetarchive < Formula
   end
 
   def install
-    virtualenv_install_with_resources
+    virtualenv_install_with_resources :using => "python@3.8"
     bin.install_symlink libexec/"bin/ia"
   end
 

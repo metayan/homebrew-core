@@ -5,7 +5,7 @@ class Mpv < Formula
   sha256 "9163f64832226d22e24bbc4874ebd6ac02372cd717bef15c28a0aa858c5fe592"
   license "GPL-2.0"
   revision 6
-  head "https://github.com/mpv-player/mpv.git"
+  head "https://github.com/mpv-player/mpv.git", :shallow => true
 
   bottle do
     sha256 "76d5079b434529fe89e10da77652377850b480fb769ee674340948f7d0d4635b" => :catalina
@@ -57,6 +57,12 @@ class Mpv < Formula
     system Formula["python@3.9"].opt_bin/"python3", "bootstrap.py"
     system Formula["python@3.9"].opt_bin/"python3", "waf", "configure", *args
     system Formula["python@3.9"].opt_bin/"python3", "waf", "install"
+
+    # fix man page "grotty: character above first line discarded" error
+    #system "sed", "-i", "'1s/^/.if n .pl 20000v\n/'", "#{prefix}/share/man/man1/mpv.1"
+
+    system "python3", "./TOOLS/osxbundle.py", "build/mpv"
+    prefix.install "build/mpv.app"
   end
 
   test do

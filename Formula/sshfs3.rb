@@ -1,13 +1,11 @@
-class Sshfs < Formula
+class Sshfs3 < Formula
   desc "File system client based on SSH File Transfer Protocol"
   homepage "https://osxfuse.github.io/"
   url "https://github.com/libfuse/sshfs/releases/download/sshfs-2.10/sshfs-2.10.tar.gz"
   sha256 "70845dde2d70606aa207db5edfe878e266f9c193f1956dd10ba1b7e9a3c8d101"
   license "GPL-2.0"
   revision 2
-  #head "https://github.com/libfuse/sshfs.git", shallow: false, tag: "sshfs-2.10"
-  head "https://github.com/libfuse/sshfs.git", shallow: false, revision: "6cc86fc0bdaaeacfb1bd5e4336f2a2d1e5b189b8"
-  head "https://github.com/libfuse/sshfs.git", shallow: false, branch: "sshfs_2.x"
+  head "https://github.com/libfuse/sshfs.git", shallow: false
 
   livecheck do
     url :stable
@@ -28,24 +26,9 @@ class Sshfs < Formula
   depends_on "glib"
   depends_on :osxfuse
 
-  # Apply patch that clears one remaining roadblock that prevented setting
-  # a custom I/O buffer size on macOS. With this patch in place, it's
-  # recommended to use e.g. `-o iosize=1048576` (or other, reasonable value)
-  # when lauching `sshfs`, for improved performance.
-  # See also: https://github.com/libfuse/sshfs/issues/11
-  patch do
-    url "https://github.com/libfuse/sshfs/commit/667cf34622e2e873db776791df275c7a582d6295.patch?full_index=1"
-    sha256 "ab2aa697d66457bf8a3f469e89572165b58edb0771aa1e9c2070f54071fad5f6"
-  end
-
-  # def install
-  #   system "./configure", "--disable-dependency-tracking", "--prefix=#{prefix}"
-  #   system "make", "install"
-  # end
-
   def install
     mkdir "build" do
-      system "meson", "--prefix=#{prefix}", "--debug", "--optimization", "g", ".."
+      system "meson", "--prefix=#{prefix}", ".."
       system "ninja", "install"
     end
   end

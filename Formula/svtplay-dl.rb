@@ -6,6 +6,7 @@ class SvtplayDl < Formula
   url "https://files.pythonhosted.org/packages/6a/24/02d3d89cd4bd4677859df5c1101a5bb55a96ea3ff080c7a74e232e604758/svtplay-dl-2.7.tar.gz"
   sha256 "2f0534cf237011a20c5630fefe15804ce1e604b3d917e92464b3c5c9dd7aeb10"
   license "MIT"
+  head "https://github.com/spaam/svtplay-dl.git"
 
   livecheck do
     url :stable
@@ -19,7 +20,7 @@ class SvtplayDl < Formula
   end
 
   depends_on "openssl@1.1"
-  depends_on "python@3.9"
+  depends_on "python@3.8"
 
   resource "six" do
     url "https://files.pythonhosted.org/packages/6b/34/415834bfdafca3c5f451532e8a8d9ba89a21c9743a0c59fbd0205c7f9426/six-1.15.0.tar.gz"
@@ -77,7 +78,7 @@ class SvtplayDl < Formula
   end
 
   def install
-    virtualenv_install_with_resources
+    virtualenv_install_with_resources :using => "python@3.8"
   end
 
   def caveats

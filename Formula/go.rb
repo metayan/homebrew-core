@@ -8,10 +8,9 @@ class Go < Formula
     mirror "https://fossies.org/linux/misc/go1.15.3.src.tar.gz"
     sha256 "896a602570e54c8cdfc2c1348abd4ffd1016758d0bd086ccd9787dbfc9b64888"
 
-    go_version = version.major_minor
     resource "gotools" do
       url "https://go.googlesource.com/tools.git",
-          branch: "release-branch.go#{go_version}"
+          branch: "release-branch.go1.15"
     end
   end
 

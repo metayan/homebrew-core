@@ -6,6 +6,7 @@ class Lensfun < Formula
   url "https://downloads.sourceforge.net/project/lensfun/0.3.95/lensfun-0.3.95.tar.gz"
   sha256 "82c29c833c1604c48ca3ab8a35e86b7189b8effac1b1476095c0529afb702808"
   revision 3
+  head "https://github.com/lensfun/lensfun", :using => :git
 
   livecheck do
     url :stable

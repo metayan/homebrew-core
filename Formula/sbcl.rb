@@ -44,7 +44,7 @@ class Sbcl < Formula
 
     command = "#{tmpdir}/src/runtime/sbcl"
     core = "#{tmpdir}/output/sbcl.core"
-    xc_cmdline = "#{command} --core #{core} --disable-debugger --no-userinit --no-sysinit"
+    xc_cmdline = "/cl/scm/sbcl/lisp --disable-debugger --no-userinit --no-sysinit"
 
     args = [
       "--prefix=#{prefix}",
